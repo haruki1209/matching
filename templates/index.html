@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Tweet Generator</title>
+</head>
+<body>
+    <h1>Gemini AIを使用したツイート生成</h1>
+    <form method="post">
+        <label for="prompt">プロンプトを入力してください:</label>
+        <input type="text" id="prompt" name="prompt" required>
+        <button type="submit">生成</button>
+    </form>
+    {% if tweet %}
+        <h2>生成されたツイート:</h2>
+        <p>{{ tweet }}</p>
+    {% endif %}
+</body>
+</html> 

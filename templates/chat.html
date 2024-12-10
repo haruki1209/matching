@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Chatbot</title>
+    <style>
+        #chatbox {
+            width: 300px;
+            height: 400px;
+            border: 1px solid #ccc;
+            overflow-y: scroll;
+            padding: 10px;
+        }
+        #user-input {
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <h1>AI Chatbot</h1>
+    <div id="chatbox"></div>
+    <input type="text" id="user-input" placeholder="メッセージを入力してください">
+    <button onclick="sendMessage()">送信</button>
+
+    <script>
+        function sendMessage() {
+            const userInput = document.getElementById('user-input').value;
+            const chatbox = document.getElementById('chatbox');
+
+            // ユーザーのメッセージを表示
+            chatbox.innerHTML += `<div><strong>あなた:</strong> ${userInput}</div>`;
+
+            // サーバーにメッセージを送信
+            fetch('/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ message: userInput })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // ボットの応答を表示
+                chatbox.innerHTML += `<div><strong>ボット:</strong> ${data.response}</div>`;
+                chatbox.scrollTop = chatbox.scrollHeight; // スクロールを下に移動
+            });
+
+            // 入力フィールドをクリア
+            document.getElementById('user-input').value = '';
+        }
+    </script>
+</body>
+</html> 
