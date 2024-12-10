@@ -1,3 +1,5 @@
-pandas
-python-dotenvgoogle-generativeai
-flask-cors
+   pandas
+   python-dotenv
+   google-generativeai
+   flask
+   flask-cors
